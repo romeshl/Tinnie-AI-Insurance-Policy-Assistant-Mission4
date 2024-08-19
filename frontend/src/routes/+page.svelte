@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { chat } from '$lib/index';
 	import { tick } from 'svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	let userInputRef: HTMLInputElement | null = null;
 	let messagesDisplayRef: HTMLDivElement | null = null;
@@ -103,7 +104,7 @@
 			{#each messages as message, index}
 				<div class={`flex ${message.user ? 'justify-end' : 'justify-start'} mb-2`}>
 					<div class={`rounded-lg p-2 shadow-md overflow-x-hidden flex flex-wrap ${message.user ? ' bg-blue-500 text-white' : 'bg-gray-200'}`}>
-						<p>{message.text.toString()}</p>
+						<SvelteMarkdown source={message.text.toString()}/>
 					</div>
 				</div>
 			{/each}
