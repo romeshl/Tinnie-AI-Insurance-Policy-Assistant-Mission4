@@ -22,9 +22,9 @@ io.on("connection", (socket) => {
 
   // Handle chat message event
   socket.on("chat message", (msg) => {
-    console.log("Message: " + msg);
-      io.emit("chat message", msg);
-      getAIResponse(msg);
+    console.log("User message: " + msg);
+    //io.emit("chat message", msg);
+    getAIResponse(msg);
   });
 
   // Handle user disconnect
@@ -39,8 +39,10 @@ async function getAIResponse(chatInput) {
     let text = "";
     for await (const chunk of result.stream) {
       const chunkText = await chunk.text();
+      console.log("AI response: " + chunkText);
       io.emit("chat message", chunkText);
     }
+    io.emit('end message', 'end');
   } catch (error) {
     console.error("Error sending message:", error);
     const text = "Error: unable to get a response from AI.";
