@@ -12,6 +12,7 @@
 	}
 
 	let socket: Socket;
+	
 	let messages: Message[] = [];
 	let userInput: string = '';
 	let loading: boolean = false;
