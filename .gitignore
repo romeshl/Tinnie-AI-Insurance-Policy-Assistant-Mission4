@@ -63,3 +63,7 @@ Desktop.ini
 *.bak
 *.swp
 *.lock
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
