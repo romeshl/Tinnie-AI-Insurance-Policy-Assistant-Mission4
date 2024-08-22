@@ -21,6 +21,13 @@ I've used the **systemInstruction** property to set the behavior of the AI. (Mor
 
 ## Instructions
 
+You will need to create a **.env** file in the root of the Backend folder to hold the following environmental variables.
+
+```
+API_KEY=(Your google API key)
+CLIENT_URL=(URL of your client eg:http://localhost:5000)
+```
+
 Use the following command to clone the repository. 
 ``` 
 git clone https://github.com/romeshl/Tinnie-AI-Insurance-Policy-Assistant-Mission4.git
