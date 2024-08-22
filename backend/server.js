@@ -12,16 +12,21 @@ const PORT = 3000; // Port number of the Server
 
 app.get("/", (req, res) => { // Root route
   res.send("<h1>Welcome to Tinnie - AI Insurance Policy Assistant server!</h1>");
+
 });
 
 server.listen(PORT, () => { // Server listening on PORT
   console.log(`Server running on port ${PORT}`);
 });
 
-io.use((socket, next) => { // Socket.io authentication middleware
-  const password = socket.handshake.query.password; // Get password from query
-  if (password === process.env.WEB_SOCKET_PASSWORD) {
-    next(); // Allow connection
+io.use((socket, next) => {
+  const origin = socket.handshake.headers.origin; // Get the origin header from the handshake
+  const allowedOrigins = [
+    "http://localhost:5000",
+  ]; // Replace with your allowed URLs
+
+  if (allowedOrigins.includes(origin)) {
+    next(); // Allow connection if the origin is in the allowed list
   } else {
     next(new Error("Unauthorized")); // Deny connection
   }

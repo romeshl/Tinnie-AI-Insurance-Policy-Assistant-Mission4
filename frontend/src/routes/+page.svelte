@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { io, Socket } from 'socket.io-client';
 
@@ -23,15 +23,16 @@
 	let firstTime: boolean = true; // Check if it's the first response from the web socket stream
 	let text: string = ''; // holds the text from the web socket stream
 
+	onMount(() => {
+		console.log(import.meta.env.VITE_WEB_SOCKET_PASSWORD); // Log the password
+	});
+
 	socket = io('http://localhost:3000', {
-		// Connect to the backend server
-		query: {
-			password: import.meta.env.VITE_WEB_SOCKET_PASSWORD // Pass the password to the server
-		},
 		reconnection: true, // Enable reconnection (this is true by default)
 		reconnectionAttempts: 2, // Set the maximum number of reconnection attempts
 		reconnectionDelay: 1000, // The initial delay before attempting to reconnect (in milliseconds)
-		reconnectionDelayMax: 5000 // The maximum delay between reconnection attempts (in milliseconds)
+		reconnectionDelayMax: 5000, // The maximum delay between reconnection attempts (in milliseconds)
+		transports: ['websocket'] // Use the WebSocket transport
 	});
 
 	socket.on('connect', () => {
