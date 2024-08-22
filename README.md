@@ -47,7 +47,7 @@ JIRA board at the beginning of the project.
 <br>
 JIRA board at the end of the project.
 <br>
-![screenshot](./Mission%20Ready%20HQ%20-%20Mission%203%20-%20JIRA-End.png)
+![screenshot](./JIRA-Board-end.png)
 <br>
 ## Task 3. Daily Standup
 Started the meetings from 22/07/2024. Had 4 meetings.
