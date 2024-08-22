@@ -26,7 +26,7 @@ const model = genAI.getGenerativeModel({
     "third party car insurance and also mechanical breakdown insurance if the user is eligible." +
     "provide reasons to support the recommendation. " +
     "There are 2 business rules. " +
-    "rule 1: Mechanical Breakdown Insurance is not available to trucks and racing cars. " +
+    "rule 1: Mechanical Breakdown Insurance is not available to trucks and racing cars but available for all other vehicle types. " +
     "rule 2: Comprehensive Car Insurance is only available to any motor vehicles less than 10 years old. " +
     "ask questions from the user to identify the best insurance policy for the user based on the above rules. " +
     "end the conversation with 'Thank you!!!'",
