@@ -10,20 +10,21 @@ const io = new Server(server); // Create socket.io server
 
 const PORT = 3000; // Port number of the Server
 
-app.get("/", (req, res) => { // Root route
-  res.send("<h1>Welcome to Tinnie - AI Insurance Policy Assistant server!</h1>");
-
+app.get("/", (req, res) => {
+  // Root route
+  res.send(
+    "<h1>Welcome to Tinnie - AI Insurance Policy Assistant server!</h1>"
+  );
 });
 
-server.listen(PORT, () => { // Server listening on PORT
+server.listen(PORT, () => {
+  // Server listening on PORT
   console.log(`Server running on port ${PORT}`);
 });
 
 io.use((socket, next) => {
   const origin = socket.handshake.headers.origin; // Get the origin header from the handshake
-  const allowedOrigins = [
-    "http://localhost:5000",
-  ]; // Replace with your allowed URLs
+  const allowedOrigins = [process.env.CLIENT_URL]; // Replace with your allowed URLs
 
   if (allowedOrigins.includes(origin)) {
     next(); // Allow connection if the origin is in the allowed list
@@ -32,20 +33,24 @@ io.use((socket, next) => {
   }
 });
 
-io.on("connection", (socket) => { // Socket.io connection is established
+io.on("connection", (socket) => {
+  // Socket.io connection is established
   console.log("A user connected");
-  socket.on("chat message", (msg) => { 
+  socket.on("chat message", (msg) => {
     getAIResponse(msg); // Grabs the message from the client and sends it to the AI
   });
-  socket.on("disconnect", () => { // When the user disconnects
+  socket.on("disconnect", () => {
+    // When the user disconnects
     console.log("User disconnected");
   });
 });
 
-async function getAIResponse(chatInput) { // Function to get AI response
+async function getAIResponse(chatInput) {
+  // Function to get AI response
   try {
     const result = await chat.sendMessageStream(chatInput); // Send message to AI
-    for await (const chunk of result.stream) { // Get response from AI stream
+    for await (const chunk of result.stream) {
+      // Get response from AI stream
       const chunkText = await chunk.text(); // Get text from chunk
       io.emit("chat message", chunkText); // Send response to client
     }

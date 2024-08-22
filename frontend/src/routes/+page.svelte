@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { io, Socket } from 'socket.io-client';
 
@@ -22,10 +22,6 @@
 
 	let firstTime: boolean = true; // Check if it's the first response from the web socket stream
 	let text: string = ''; // holds the text from the web socket stream
-
-	onMount(() => {
-		console.log(import.meta.env.VITE_WEB_SOCKET_PASSWORD); // Log the password
-	});
 
 	socket = io('http://localhost:3000', {
 		reconnection: true, // Enable reconnection (this is true by default)
