@@ -58,7 +58,7 @@ JIRA board at the end of the project.
 ![screenshot](./JIRA-Board-end.png)
 <br>
 ## Task 3. Daily Standup
-Started the meetings from 22/07/2024. Had 4 meetings.
+Started the meetings on 18/08/2024.
 
 ## Task 4. Create an Insurance Recommendation Application using Generative AI
 
